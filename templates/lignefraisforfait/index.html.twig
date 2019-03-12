@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Lignefraisforfait index{% endblock %}
+
+{% block body %}
+    <h1>Lignefraisforfait index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Mois</th>
+                <th>Quantite</th>
+                <th>Montant</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for lignefraisforfait in lignefraisforfaits %}
+            <tr>
+                <td>{{ lignefraisforfait.id }}</td>
+                <td>{{ lignefraisforfait.mois }}</td>
+                <td>{{ lignefraisforfait.quantite }}</td>
+                <td>{{ lignefraisforfait.montant }}</td>
+                <td>
+                    <a href="{{ path('lignefraisforfait_show', {'id': lignefraisforfait.id}) }}">show</a>
+                    <a href="{{ path('lignefraisforfait_edit', {'id': lignefraisforfait.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('lignefraisforfait_new') }}">Create new</a>
+{% endblock %}

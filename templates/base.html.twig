@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+        {% endblock %}
+    </head>
+    <body>
+      
+    <nav class="navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">FraisOnline</a>
+    </div>
+      
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="{{ path ('accueil')}}">Home</a></li>
+      {% if app.session.get('visiteur') is not null %} 
+	 
+      <li><a href="{{ path ('Renseigner')}}">Renseigner</a></li>
+      <li><a href="{{ path ('fichefrais_index')}}">Consulter</a></li>
+      {% endif %}
+      
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+       {% if app.session.get('visiteur') is  null %} 
+        <li><a href="{{ path ('visiteur_new') }}"><span class="glyphicon glyphicon-user"></span> 
+         S'inscrire</a></li>
+         <li><a href="{{ path ('login') }}"><span class="glyphicon glyphicon-user"></span> 
+         Se connecter </a></li>
+          {% endif %}
+         {% if app.session.get('visiteur') is not null %} 
+          <li><a href="{{ path ('deconnecter') }}"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a></li>
+           {% endif %}
+      </ul>
+      
+  </div>
+    </nav>
+      {% block body %}
+     
+      {% endblock %}
+        {% block javascripts %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        {% endblock %}
+    </body>
+</html>

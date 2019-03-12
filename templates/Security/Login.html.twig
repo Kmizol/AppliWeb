@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+{{ form_start(form) }}
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      
+      {{form_row(form.login, {'attr': {'class': 'form-control','id':'inputEmail4', 'placeholder':'login'}}) }}
+    </div>
+    <div class="form-group col-md-2">
+      {{form_row(form.mdp, {'attr': {'class': 'form-control','id':'inputNom4', 'placeholder':'Mot de passe'}}) }}
+    </div>
+    <div class="form-group col-md-2">
+    <br>
+
+    {{form_row(form.save, {'label': 'Connexion' ,'attr': {'class': 'btn btn-primary'}}) }}
+      </div>
+     </div>
+
+  
+{{ form_end(form) }}
+
+{% endblock %}

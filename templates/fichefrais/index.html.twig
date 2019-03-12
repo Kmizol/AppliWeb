@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fichefrais index{% endblock %}
+
+{% block body %}
+    <h1>Fichefrais index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mois</th>
+                <th>Nbjustificatifs</th>
+                <th>Montantvalide</th>
+                <th>Datemodif</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fichefrai in fichefrais %}
+            <tr>
+                <td>{{ fichefrai.mois }}</td>
+                <td>{{ fichefrai.nbjustificatifs }}</td>
+                <td>{{ fichefrai.montantvalide }}</td>
+                <td>{{ fichefrai.datemodif ? fichefrai.datemodif|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('fichefrais_show', {'mois': fichefrai.mois}) }}">show</a>
+                    <a href="{{ path('fichefrais_edit', {'mois': fichefrai.mois}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('fichefrais_new') }}">Create new</a>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Lignefraisforfait{% endblock %}
+
+{% block body %}
+
+    <h1>Create new LignefraisHorsforfait</h1>
+    {{ form_start(form1) }}
+    
+    {{form_row(form1.idVisiteur, {'value' : app.session.get('visiteur').id}) }}
+		  
+     {{form_row(form1.mois)}}
+      {{form_row(form1.libelle)}}
+       {{form_row(form1.date)}}
+        {{form_row(form1.montant)}}
+        
+        <div id ="message"> </div>
+    {{ form_end(form1) }}
+
+    <h1>Create new Lignefraisforfait</h1>
+    {{ form_start(form2) }}
+	
+	{{form_row(form2.idVisiteur, {'value' : app.session.get('visiteur').id}) }}
+    {{form_row(form2.montant,{'attr': {'id':'montant', 'placeholder':'Montant'}}) }}
+     {{form_row(form2.idfraisforfait,{'attr': {'id':'idfraisforfait'}}) }}
+    
+    {{ form_widget(form2) }}
+    {{ form_end(form2) }}
+
+   
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#lignefraisforfait_montant").change(function() {  
+      var montant = parseFloat($("#lignefraisforfait_idfraisforfait").val()); // retourne value du <select> 
+       var m = parseFloat($("#lignefraisforfait_montant").val()); // retourne value du montant <input>
+      console.log(montant);
+      if(m>=montant){
+          alert("Vous depassez le seuil autorisé "+montant);
+      }
+    
+  });
+    $("#lignefraisforfait_idfraisforfait").change(function() {
+    // HIDE ALL DIVS
+      var montant = parseFloat($("#lignefraisforfait_idfraisforfait").val());
+       var m = parseFloat($("#lignefraisforfait_montant").val());
+      console.log(montant);
+      if(m>=montant){
+          alert("Vous depassez le seuil autorisé de "+montant);
+      }
+  });
+});
+</script>
+
+
+{% endblock %}
