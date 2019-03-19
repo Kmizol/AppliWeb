@@ -7,7 +7,7 @@ security:
         Symfony\Component\Security\Core\User\User: bcrypt
         #algorithm: bcrypt composer require doctrine
         #cost: 12
-composer require twig
+
     firewalls:
         main:
             anonymous: ~ #true
