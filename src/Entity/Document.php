@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Document
  *
- * @ORM\Table(name="document", indexes={@ORM\Index(name="idFraisForfait", columns={"idFraisForfait"}), @ORM\Index(name="IdVisiteur", columns={"IdVisiteur"})})
+ * @ORM\Table(name="document", indexes={@ORM\Index(name="IdVisiteur", columns={"IdVisiteur"})})
  * @ORM\Entity
  */
 class Document
@@ -29,9 +29,12 @@ class Document
     private $path;
 
     /**
-     * @var string
+     * @var \Visiteur
      *
-     * @ORM\Column(name="IdVisiteur", type="string", length=11, nullable=false)
+     * @ORM\ManyToOne(targetEntity="Visiteur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="IdVisiteur", referencedColumnName="id")
+     * })
      */
     private $idvisiteur;
 
@@ -52,14 +55,17 @@ class Document
         return $this;
     }
 
-    public function getIdvisiteur(): ?string
+    public function getIdvisiteur(): ?Visiteur
     {
         return $this->idvisiteur;
     }
 
-    public function setIdvisiteur(string $idvisiteur): self
+    public function setIdvisiteur(?Visiteur $idvisiteur): self
     {
         $this->idvisiteur = $idvisiteur;
 
         return $this;
     }
+
+
+}

@@ -27,10 +27,8 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
        {% if app.session.get('visiteur') is  null %} 
-        <li><a href="{{ path ('visiteur_new') }}"><span class="glyphicon glyphicon-user"></span> 
-         S'inscrire</a></li>
-         <li><a href="{{ path ('login') }}"><span class="glyphicon glyphicon-user"></span> 
-         Se connecter </a></li>
+        <li><a href="{{ path ('visiteur_new') }}"><span class="glyphicon glyphicon-user"></span>S'inscrire</a></li> 
+        <li><a href="{{ path ('login') }}"><span class="glyphicon glyphicon-user"></span>Se connecter </a></li>
           {% endif %}
          {% if app.session.get('visiteur') is not null %} 
           <li><a href="{{ path ('deconnecter') }}"><span class="glyphicon glyphicon-log-out"></span> Deconnexion</a></li>

@@ -21,8 +21,9 @@ use Symfony\Component\Form\Extension\Core\Type\BirthdayType;
 
 class SecurityController extends AbstractController
 {
-    
-    
+      /**
+     * @Route("/login", name="login")
+     */
     public function login(Request $request , SessionInterface $session)
 {
 
