@@ -1,5 +1,5 @@
 body {
-    background-color: lightgray;
+    background-color: rgba(255, 255, 255, 0.411);
 }
 div{
     display: flex;

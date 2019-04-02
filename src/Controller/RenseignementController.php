@@ -1,8 +1,9 @@
 <?php
 
 namespace App\Controller;
-
+use App\Entity\Etat;
 use App\Entity\Lignefraisforfait;
+use App\Entity\Fichefrais;
 use App\Entity\Document;
 use App\Form\LignefraisforfaitType;
 use App\Entity\Lignefraishorsforfait;
@@ -16,8 +17,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver; 
-use Symfony\Component\HttpFoundation\File\UploadedFile ;
+use Symfony\Component\Form\FormView; 
+use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class RenseignementController extends Controller
 {
@@ -68,36 +69,28 @@ class RenseignementController extends Controller
         $lignefraisforfait = new Lignefraisforfait();
         $form2 = $this->createForm(LignefraisforfaitType::class, $lignefraisforfait);
         $form2->handleRequest($request);
-        $document = new Document();
+      
      
          
   
         if ($request->getMethod() == 'POST') {
-         
-            
             if ($request->request->has('lignefraishorsforfait')) {
                 dump("okkk");
                 if($form1->isSubmitted() && $form1->isValid()) {
                     $em = $this->getDoctrine()->getManager();
-                    // $lignefraishorsforfait : les donnees recuperees du formulaire 
-                    // l'objet lignrfaishors et le nom du fichier 
-                    /** @var Symfony\Component\HttpFoundation\File\UploadedFile $uploadFile */
                     $uploadFile =  $lignefraishorsforfait -> getFichier();
-                
-                   
+              //  dump($uploadFile);
                     // $lignefraisho->getFichier() ;
                     // generateUniqueFileName() permet de generer une cle unique pour chaque fichier
-                    $fileName = $this->generateUniqueFileName().'.'. $uploadFile ->guessExtension();
+                   $fileName =$uploadFile->getClientOriginalName();
                   // var_dump($uploadFile->guessExtension());
                     // Déplacez le fichier dans le répertoire où les brochures sont stockées dans le dossier web /uploads / documents
                    // $fileEx =  $uploadFile->getMimeType();
-                   
+                   $document = new Document();
                     $uploadFile->move($this->getParameter('brochures_directory'),$fileName);
                    $document->setPath($fileName);
                    $document->setIdvisiteur($lignefraishorsforfait->getIdvisiteur());
-          
-
-
+                  
                    $em->persist($document);
 
 
@@ -108,7 +101,7 @@ class RenseignementController extends Controller
                     $lignefraishorsforfaitCopie->setDate($lignefraishorsforfait->getDate());
                     $lignefraishorsforfaitCopie->setIdVisiteur($lignefraishorsforfait->getIdVisiteur());
                     $lignefraishorsforfaitCopie->setMontant($lignefraishorsforfait->getMontant());
-                    $lignefraishorsforfaitCopie->setIdDoc($document);
+                    $lignefraishorsforfaitCopie->setIddoc($document);
                   
 
 
@@ -121,7 +114,7 @@ class RenseignementController extends Controller
                    
                    
                     $em->flush();
-                    return $this->redirectToRoute('lignefraishorsforfait_index');
+                    return $this->redirectToRoute('Renseigner');
                 }
          
  

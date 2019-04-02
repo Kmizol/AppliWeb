@@ -64,7 +64,7 @@ class Lignefraishorsforfait
      *
      * @ORM\ManyToOne(targetEntity="Document")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="idDoc", referencedColumnName="idJustificatif")
+     *   @ORM\JoinColumn(name="iddoc", referencedColumnName="idJustificatif")
      * })
      */
     private $iddoc;
@@ -99,12 +99,12 @@ class Lignefraishorsforfait
 
         return $this;
     }
-    public function getFichier(): ?string
+    public function getFichier()
     {
         return $this->Fichier;
     }
 
-    public function setFichier(?string $Fichier): self
+    public function setFichier($Fichier): self
     {
         $this->Fichier = $Fichier;
 

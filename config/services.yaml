@@ -5,7 +5,7 @@
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: 'en'
-    brochures_directory: '%kernel.root_dir%/../public/Upload/documents'
+    brochures_directory: '%kernel.root_dir%/../public/upload/documents'
     env(DATABASE_HOST): localhost
 
 
