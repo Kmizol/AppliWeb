@@ -34,6 +34,7 @@ class SecurityController extends AbstractController
     ->getForm();
 
     $form->handleRequest($request);
+ 
 
     if ($form->isSubmitted() && $form->isValid()) {
         // $form->getData() holds the submitted values

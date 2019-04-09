@@ -47,8 +47,8 @@ class RenseignementController extends Controller
            }
            else
            {
-               $MontantT=$Fichefrais[0]->getMontant()+$Montant;
-               $Fichefrais[0]->setMontant($MontantT);
+               $MontantT=$Fichefrais[0]->getMontantvalide()+$Montant;
+               $Fichefrais[0]->setMontantvalide($MontantT);
 
                $NbJustificatifsT=$Fichefrais[0]->getNbJustificatifs()+$NbJustificatifs;
                $Fichefrais[0]->setNbJustificatifs($NbJustificatifsT);
